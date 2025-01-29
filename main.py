@@ -14,7 +14,8 @@ def time_to_expiration(expiration_date):
 def fetch_options(symbol, expiration_date):
     stock = yf.Ticker(symbol)
     options_chain = stock.option_chain(expiration_date)
-    return options_chain.calls, stock.info['regularMarketPrice']
+   # print(f'keys: {stock.info.keys()}')
+    return options_chain.calls, stock.info['currentPrice']
 
 # Main function to integrate with Black-Scholes
 def main():
@@ -23,7 +24,7 @@ def main():
     
     # Specify stock symbol and expiration date
     symbol = "AAPL"  # Replace with your desired stock symbol
-    expiration_date = "2025-02-16"  # Replace with the desired expiration date
+    expiration_date = "2025-01-31"  # Replace with the desired expiration date
 
     # Fetch options data and stock price
     calls, S = fetch_options(symbol, expiration_date)

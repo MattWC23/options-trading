@@ -19,7 +19,7 @@ class BlackScholes(Model):
         return val
 
     def _calc_d1_and_d2(self, option):
-        S, K, T, r, sigma = option.S, option.K, option.T, option.r, option.Sigma
+        S, K, T, r, sigma = option.S, option.K, option.T, option.r, option.sigma
         d1 = (math.log(S / K) + (r + 0.5 * sigma ** 2) * T) / (sigma * math.sqrt(T))
         d2 = d1 - sigma * math.sqrt(T)
         return d1, d2
@@ -29,5 +29,9 @@ class BlackScholes(Model):
     
     def _calc_put_option(self, option, d1, d2):
         return option.K * math.exp(-option.r * option.T) * norm.cdf(-d2) - option.S * norm.cdf(-d1)
+    
+
+    def all_prices(self, option):
+        return super().all_prices(option)
     
 

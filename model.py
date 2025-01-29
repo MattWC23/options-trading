@@ -20,11 +20,13 @@ class Model(ABC):
         """
         pass
 
-    @abstractmethod
     def all_prices(self, option):
         """
-        Returns all call, put pairs for all options in the model
+        Returns all (call, put) pairs for all options in the model in the 
+        format [{option name: (call, put)}] where call and put are numbers
         """
+        return self.options
+
     
     def __str__(self):
         output = []
